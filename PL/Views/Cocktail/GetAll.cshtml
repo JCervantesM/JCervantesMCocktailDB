@@ -1,0 +1,90 @@
+﻿@model ML.Cocktail
+@{
+    ViewBag.Title = "Busqueda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cocktails</h2>
+<div class="container-fluid">
+    <div class="align-content-lg-center">
+
+        @using (Html.BeginForm("Busqueda", "Cocktail", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="col">
+                    @Html.TextBoxFor(model => model.strDrink, new { @class = "form-control", @id = "txtNombre", @placeholder = "Ingresa una Bebida", @onkeypress = "SoloLetras(event, 'txtNombre','lblNombre')" })
+                    @Html.ValidationMessageFor(model => model.strDrink, null, new { @class = "text-danger" })
+
+                </div>
+                <p>
+                </p>
+                <div class="col">
+                    <div class="col-form-label-lg">
+                        <input type="submit" value="Buscar" class="openModal btn btn-info" />
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<section>
+       <table id="tableUsuario" class="table table-info table-striped table-bordered table-responsive-lg">
+           <thead class="table-dark">
+               <tr>
+                   <td class="text-center" style="font-palette:light;">Imagen</td>
+                   <td class="text-center" style="font-palette:light;">Nombre</td>
+                   <td class="text-center" style="font-palette:light;">Ingredientes</td>
+                   <td class="text-center" style="font-palette:light;">Preparacion</td>
+               </tr>
+           </thead>
+           <tbody>-->
+@*@foreach (var item in Model.Cocteles)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Nombre)
+            </td>
+        </tr>
+    }*@
+<!--</tbody>
+    </table>
+</section>-->

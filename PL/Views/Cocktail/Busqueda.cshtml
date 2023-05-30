@@ -1,0 +1,103 @@
+﻿@model ML.Cocktail
+@{
+    ViewBag.Title = "Busqueda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cocktails</h2>
+<div class="container-fluid">
+    <div class="align-content-lg-center">
+
+        @using (Html.BeginForm("Busqueda", "Cocktail", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="col">
+                    @Html.TextBoxFor(model => model.strDrink, new { @class = "form-control", @id = "txtNombre", @placeholder = "Ingresa una Bebida", @onkeypress = "SoloLetras(event, 'txtNombre','lblNombre')" })
+                    @Html.ValidationMessageFor(model => model.strDrink, null, new { @class = "text-danger" })
+
+                </div>
+                <p>
+                </p>
+                <div class="col">
+                    <div class="col-form-label-lg">
+                        <input type="submit" value="Buscar" class="openModal btn btn-info" />
+                    </div>
+                </div>
+            </div>
+        }
+
+
+        <div class="card-group">
+            <p>
+            </p>
+            @foreach (ML.Cocktail cocktail in Model.drinks)
+            {
+                <div class="row">
+                    <div class="col  justify-content-center">
+                        <div class="card-group pb-3 p-3" style="width:18rem">
+                            <img class="card-img-top" src=@cocktail.strDrinkThumb width="120px" height="250px" />
+
+                            <div class="card-body">
+                                <h3 class="card-text card-header text-center bg-dark mb-2 text-white">@cocktail.strDrink</h3>
+                                <h5 class="visually-hidden">@cocktail.idDrink</h5>
+                                <p class="visually-hidden">@cocktail.idDrink</p>
+                                <p class="text-center">
+                                    Ingredientes:
+                                    <img src="@cocktail.Imagen" width="28px" height="28px" />
+                                    <img src="@cocktail.Imagen2" width="28px" height="28px" />
+                                    <img src="@cocktail.Imagen3" width="28px" height="28px" />
+                                </p>
+                                <p class="card-text carousel-dark list-group text-center">@cocktail.strIngredient1, @cocktail.strIngredient2, @cocktail.strIngredient3 </p> 
+                                <p></p>
+                                <p class="text-center">Preparacion: </p>
+                                <p class="card-text carousel-dark list-group text-center">@cocktail.strInstructions</p>
+                                <p class="card-text">@cocktail.strInstructions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p></p>
+            }
+        </div>
+
+    </div>
+</div>
+
+
+@*<div id="miModal" class="modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn btn-danger bi bi-x-circle" onclick="CerrarModal()"></button>
+                </div>
+                <div class="modal-body container-fluid">
+                    @foreach (ML.Cocktail cocktail1 in Model.drinks)
+                    {
+                        <p class="visually-hidden">@cocktail1.idDrink</p>
+                        <p class="text-center">Ingredientes:</p>
+                        <p class="card-text carousel-dark list-group text-center">@cocktail1.strIngredient1</p>
+                        <img src="@cocktail1.Imagen" />
+                        <p class="card-text carousel-dark list-group text-center">@cocktail1.strIngredient2</p>
+                        <img src="@cocktail1.Imagen2" />
+                        <p class="card-text carousel-dark list-group text-center">@cocktail1.strIngredient3</p>
+                        <img src="@cocktail1.Imagen3" />
+                        <p class="text-center">Preparacion: </p>
+                        <p class="card-text carousel-dark list-group text-center">@cocktail1.strInstructions</p>
+                        <p class="card-text">@cocktail1.strInstructions</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+<script type="text/javascript">
+
+    function MostrarModal(idDrink) {
+        $("#miModal" + idDrink).modal("show");
+    }
+    function CerrarModal() {
+        $("#miModal").modal('hide');
+    }
+</script>
